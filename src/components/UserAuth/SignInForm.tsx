@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { signInUser } from "../../firebaseConfig";
+import { toast } from "../helpers/toast";
 
 const SignInForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,11 @@ const SignInForm: React.FC = () => {
   async function singIn() {
     // console.log(email, pwd);
     const res = await signInUser(email, pwd);
+    if (res) {
+      toast("Error signing with your credentials");
+    } else {
+      toast("You have signed in!");
+    }
     console.log(`${res ? "login success" : "login failed"}`);
   }
 
