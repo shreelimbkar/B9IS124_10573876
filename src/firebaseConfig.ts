@@ -1,5 +1,7 @@
 import firebase from 'firebase';
 
+import { toast } from './components/helpers/toast'
+
 const config = {
     apiKey: "AIzaSyCfds32l1cwYYNEq-E-CHDeOLr92Ty-RpI",
     authDomain: "smart-car-parking-7d8ed.firebaseapp.com",
@@ -20,6 +22,19 @@ export async function signInUser(email:string, pwd:string) {
         return true;
     } catch (e) {
         console.log(e);
+        toast(e.message, 4000)
+        return false;
+    }
+}
+
+export async function registerUser(email:string, pwd:string) {
+    try {
+        const res = await firebase.auth().createUserWithEmailAndPassword(email, pwd)
+        console.log (res);
+        return true;
+    } catch (e) {
+        console.log(e);
+        toast(e.message, 4000)
         return false;
     }
 }

@@ -19,9 +19,7 @@ const SignInForm: React.FC = () => {
   async function singIn() {
     // console.log(email, pwd);
     const res = await signInUser(email, pwd);
-    if (res) {
-      toast("Error signing with your credentials");
-    } else {
+    if (!res) {
       toast("You have signed in!");
     }
     console.log(`${res ? "login success" : "login failed"}`);
@@ -37,6 +35,7 @@ const SignInForm: React.FC = () => {
               <IonInput
                 type="email"
                 onIonChange={(e: any) => setEmail(e.target.value)}
+                autofocus={true}
               ></IonInput>
             </IonItem>
           </IonCol>
