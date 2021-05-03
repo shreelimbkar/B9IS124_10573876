@@ -39,6 +39,8 @@ const SignUpForm: React.FC = () => {
     const res = await registerUser(email, pwd);
     if (res) {
       toast("You have registered successfully!");
+      // window.history.replaceState({}, "", "/signin");
+      window.location.href = "/signin";
     }
     setLoading(false);
   }

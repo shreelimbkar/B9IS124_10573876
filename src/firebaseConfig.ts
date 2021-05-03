@@ -51,3 +51,7 @@ export async function registerUser(email:string, pwd:string) {
         return false;
     }
 }
+
+export function signOutUser() {
+    return firebase.auth().signOut();
+}

@@ -38,11 +38,11 @@ const App: React.FC = () => {
       if (user) {
         window.history.replaceState({}, "", "/dashboard");
       } else {
-        window.history.replaceState({}, "", "/");
+        window.history.replaceState({}, "", "/signin");
       }
       setLoading(false);
     });
-  });
+  }, []);
 
   return (
     <IonApp>

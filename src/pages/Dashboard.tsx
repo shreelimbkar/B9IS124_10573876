@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonContent,
   IonHeader,
   IonPage,
@@ -7,8 +8,21 @@ import {
 } from "@ionic/react";
 
 import ParkingAreas from "../components/ParkingAreas";
+import { signOutUser } from "../firebaseConfig";
 
 const Dashboard: React.FC = () => {
+  function signOut() {
+    const res = signOutUser();
+    console.log(res);
+    res
+      .then((user) => {
+        console.log(user);
+        window.history.replaceState({}, "", "/signin");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -18,6 +32,7 @@ const Dashboard: React.FC = () => {
       </IonHeader>
       <IonContent>
         <ParkingAreas />
+        <IonButton onClick={signOut}>SignOut</IonButton>
       </IonContent>
     </IonPage>
   );

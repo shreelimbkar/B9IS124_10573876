@@ -22,8 +22,10 @@ const SignInForm: React.FC = () => {
     // console.log(email, pwd);
     setLoading(true);
     const res = await signInUser(email, pwd);
-    if (!res) {
+    console.log("sign in res ", res);
+    if (res) {
       toast("You have signed in!");
+      window.history.replaceState({}, "", "/dashboard");
     }
     setLoading(false);
     console.log(`${res ? "login success" : "login failed"}`);
