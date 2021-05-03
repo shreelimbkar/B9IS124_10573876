@@ -6,6 +6,7 @@ import {
   IonInput,
   IonLabel,
   IonButton,
+  IonLoading,
 } from "@ionic/react";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -13,20 +14,24 @@ import { signInUser } from "../../firebaseConfig";
 import { toast } from "../helpers/toast";
 
 const SignInForm: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
 
   async function singIn() {
     // console.log(email, pwd);
+    setLoading(true);
     const res = await signInUser(email, pwd);
     if (!res) {
       toast("You have signed in!");
     }
+    setLoading(false);
     console.log(`${res ? "login success" : "login failed"}`);
   }
 
   return (
     <>
+      <IonLoading message="Please wait..." duration={0} isOpen={loading} />
       <IonGrid>
         <IonRow class="ion-align-items-center">
           <IonCol class="ion-padding">
