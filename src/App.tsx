@@ -1,5 +1,5 @@
 import { Redirect, Route } from "react-router-dom";
-import { IonApp, IonRouterOutlet } from "@ionic/react";
+import { IonApp, IonLoading, IonRouterOutlet } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
 import Home from "./pages/Home";
@@ -23,26 +23,49 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
+import { getCurrentUser } from "./firebaseConfig";
+
 /* Theme variables */
 import "./theme/variables.css";
+import { useEffect, useState } from "react";
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/" component={Home} exact />
-        <Route path="/signin" component={SignIn} exact />
-        <Route path="/signup" component={SignUp} exact />
-        <Route path="/dashboard" component={Dashboard} exact />
-        {/* <Route exact path="/home">
+const App: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    getCurrentUser().then((user) => {
+      console.log("User", user);
+      if (user) {
+        window.history.replaceState({}, "", "/dashboard");
+      } else {
+        window.history.replaceState({}, "", "/");
+      }
+      setLoading(false);
+    });
+  });
+
+  return (
+    <IonApp>
+      {loading ? (
+        <IonLoading message="Please wait..." duration={0} isOpen={loading} />
+      ) : (
+        <IonReactRouter>
+          <IonRouterOutlet>
+            <Route path="/" component={Home} exact />
+            <Route path="/signin" component={SignIn} exact />
+            <Route path="/signup" component={SignUp} exact />
+            <Route path="/dashboard" component={Dashboard} exact />
+            {/* <Route exact path="/home">
           <Home />
         </Route>
         <Route exact path="/">
           <Redirect to="/home" />
         </Route> */}
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+          </IonRouterOutlet>
+        </IonReactRouter>
+      )}
+    </IonApp>
+  );
+};
 
 export default App;

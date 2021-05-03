@@ -14,6 +14,19 @@ const config = {
 
 firebase.initializeApp(config);
 
+export function getCurrentUser() {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                resolve(user);
+            } else {
+                resolve(null)
+            }
+            unsubscribe()
+        })
+    })
+}
+
 export async function signInUser(email:string, pwd:string) {
     
     try {
