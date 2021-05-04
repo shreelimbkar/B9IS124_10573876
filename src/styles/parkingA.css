@@ -1,0 +1,12 @@
+ion-row div {
+  background-color: #ccc;
+  text-align: center;
+  border: 1px solid #000;
+  margin: 5px 5px;
+  padding: 0 5px;
+  height: 55px;
+  color: black;
+}
+ion-row div ion-icon {
+  font-size: 50px;
+}

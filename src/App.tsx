@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
+import ParkingA from "./components/ParkingA";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -55,6 +56,7 @@ const App: React.FC = () => {
             <Route path="/signin" component={SignIn} exact />
             <Route path="/signup" component={SignUp} exact />
             <Route path="/dashboard" component={Dashboard} exact />
+            <Route path="/parkingA" component={ParkingA} />
             {/* <Route exact path="/home">
           <Home />
         </Route>

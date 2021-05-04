@@ -1,0 +1,21 @@
+ion-card-title {
+  font-size: 22px;
+  color: #000080;
+}
+.total-slots {
+  font-size: 20px;
+  font-weight: bold;
+  color: #d2691e;
+}
+
+.available-slots {
+  font-size: 18px;
+  font-weight: bold;
+  color: green;
+}
+
+.blocked-slots {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff0000;
+}

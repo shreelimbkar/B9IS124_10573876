@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
       </IonHeader>
       <IonContent>
         <ParkingAreas />
-        <IonButton onClick={signOut}>SignOut</IonButton>
+        {/* <IonButton onClick={signOut}>SignOut</IonButton> */}
       </IonContent>
     </IonPage>
   );
